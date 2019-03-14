@@ -14,6 +14,7 @@ from flask_principal import Permission, RoleNeed
 # Permissions
 operator_permission = Permission(RoleNeed('operator'))
 admin_permission = Permission(RoleNeed('admin'))
+private_key_permission = Permission(RoleNeed('access_sensitive'))
 
 CertificateOwner = namedtuple('certificate', ['method', 'value'])
 CertificateOwnerNeed = partial(CertificateOwner, 'role')

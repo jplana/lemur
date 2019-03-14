@@ -8,7 +8,7 @@ from flask import Blueprint, g, make_response, jsonify
 from flask_restful import Api, reqparse, inputs
 
 from lemur.auth.service import AuthenticatedResource
-from lemur.auth.permissions import CertificatePermission
+from lemur.auth.permissions import CertificatePermission, private_key_permission
 
 from lemur.common.schema import validate_schema
 from lemur.common.utils import paginated_parser
@@ -372,6 +372,7 @@ class PendingCertificatePrivateKey(AuthenticatedResource):
     def __init__(self):
         super(PendingCertificatePrivateKey, self).__init__()
 
+    @private_key_permission.require()
     def get(self, pending_certificate_id):
         """
         .. http:get:: /pending_certificates/1/key
